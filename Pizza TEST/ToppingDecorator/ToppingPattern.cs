@@ -18,7 +18,7 @@ namespace Pizza_TEST.AdditionDecorator
 
         public string GetDough() => _pizza.GetDough();
 
-        public string GetTopping() => $"{_pizza.GetTopping()} {_addition}";
+        public string GetTopping() => _addition != String.Empty ? $"{_addition}, {_pizza.GetTopping()}" : $"{_pizza.GetTopping()}";
 
         public double GetPrice() => _pizza.GetPrice() + _price;
     }

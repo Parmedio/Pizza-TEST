@@ -2,7 +2,7 @@
 
 namespace Pizza_TEST.DoughDecorator
 {
-    public abstract class DoughPattern : Pizza //IPizza
+    public abstract class DoughPattern : IPizza
     {
         private readonly IPizza _pizza;
 

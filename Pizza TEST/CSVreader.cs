@@ -1,9 +1,4 @@
 ﻿using Pizza_TEST.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pizza_TEST
 {
@@ -24,7 +19,7 @@ namespace Pizza_TEST
 
                 for (int i = 0; i < rows.Length; i++)
                 {
-                    pizzas[i] = PizzaFactory.assemblePizzaOrder(rows[i].Replace(" ", ""));
+                    pizzas[i] = PizzaFactory.assemblePizzaOrder(rows[i].Replace(" ", string.Empty));
                 }
 
                 var currentOrder = new Order(receiptNumber, pizzas, GetSubtotal(pizzas));
@@ -35,7 +30,6 @@ namespace Pizza_TEST
             }
             return allOrders.ToArray();
         }
-
         private static double GetSubtotal(IPizza[] pizzaArray)
         {
             double subtotal = 0;
