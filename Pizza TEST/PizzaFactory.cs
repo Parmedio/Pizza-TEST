@@ -28,8 +28,8 @@ namespace Pizza_TEST
             if (ContainSpecialItem(pizzaAdditions, "Ananas")) 
             {
                 var specialDiscount = currentOrder.GetPrice();
-                var currentDiscountOrder = new DecoratorSpecialDiscount(currentOrder, specialDiscount);
-                currentOrder = currentDiscountOrder;
+                var discountedOrder = new DecoratorSpecialDiscount(currentOrder, specialDiscount);
+                currentOrder = discountedOrder;
             }
 
             return currentOrder;
