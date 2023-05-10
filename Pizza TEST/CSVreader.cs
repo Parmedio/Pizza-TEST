@@ -8,29 +8,23 @@ namespace Pizza_TEST
 {
     public static class CSVreader
     {
-        public static string[] ReadAllCsvRows(string directoryPath)
+        public static (int, string)[] ReadAllCsvRows(string directoryPath)
         {
-            List<string> allRows = new List<string>();
+            List<(int, string)> allRows = new List<(int, string)>();
+            int receiptNumber = 1;
 
-            try
+            string[] csvFiles = Directory.GetFiles(directoryPath, "*.csv");
+
+            foreach (string orderFile in csvFiles)
             {
-                string[] csvFiles = Directory.GetFiles(directoryPath, "*.csv");
+                string[] rows = File.ReadAllLines(orderFile);
 
-                foreach (string filePath in csvFiles)
+                foreach (string row in rows)
                 {
-                    string[] rows = File.ReadAllLines(filePath);
-                    allRows.AddRange(rows);
+                    allRows.Add((receiptNumber, row));
                 }
+                receiptNumber++;
             }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine("directory does not exist");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("there were some issues when reading file CSV" + ex.Message);
-            }
-
             return allRows.ToArray();
         }
     }
