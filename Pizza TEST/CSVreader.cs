@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pizza_TEST.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Pizza_TEST
 {
     public static class CSVreader
     {
-        public static (int, string)[] ReadAllCsvRows(string directoryPath)
+        public static IOrder[] ReadAllCSV(string directoryPath)
         {
-            List<(int, string)> allRows = new List<(int, string)>();
+            var allOrders = new List<IOrder>();
             int receiptNumber = 1;
 
             string[] csvFiles = Directory.GetFiles(directoryPath, "*.csv");
@@ -19,13 +20,30 @@ namespace Pizza_TEST
             {
                 string[] rows = File.ReadAllLines(orderFile);
 
-                foreach (string row in rows)
+                var pizzas = new IPizza[rows.Length];
+
+                for (int i = 0; i < rows.Length; i++)
                 {
-                    allRows.Add((receiptNumber, row.Replace(" ", "")));
+                    pizzas[i] = PizzaFactory.assemblePizzaOrder(rows[i].Replace(" ", ""));
                 }
+
+                var currentOrder = new Order(receiptNumber, pizzas, GetSubtotal(pizzas));
+                
+                allOrders.Add(currentOrder);
+                
                 receiptNumber++;
             }
-            return allRows.ToArray();
+            return allOrders.ToArray();
+        }
+
+        private static double GetSubtotal(IPizza[] pizzaArray)
+        {
+            double subtotal = 0;
+            foreach (var pizza in pizzaArray)
+            {
+                subtotal += pizza.GetPrice();
+            }
+            return subtotal;
         }
     }
 }

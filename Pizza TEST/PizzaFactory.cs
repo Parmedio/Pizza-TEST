@@ -1,10 +1,11 @@
 ﻿using Pizza_TEST.AdditionDecorator;
 using Pizza_TEST.DoughDecorator;
+using Pizza_TEST.Model;
 using Pizza_TEST.PizzaTypeDecorator;
 
 namespace Pizza_TEST
 {
-    internal class PizzaFactory
+    public class PizzaFactory
     {
         public static IPizza assemblePizzaOrder(string pizzaOrderString)
         {

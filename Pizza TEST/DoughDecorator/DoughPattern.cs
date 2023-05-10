@@ -1,6 +1,8 @@
-﻿namespace Pizza_TEST.DoughDecorator
+﻿using Pizza_TEST.Model;
+
+namespace Pizza_TEST.DoughDecorator
 {
-    public abstract class DoughPattern : IPizza
+    public abstract class DoughPattern : Pizza //IPizza
     {
         private readonly IPizza _pizza;
 

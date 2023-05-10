@@ -1,4 +1,6 @@
-﻿namespace Pizza_TEST.AdditionDecorator
+﻿using Pizza_TEST.Model;
+
+namespace Pizza_TEST.AdditionDecorator
 {
     public class DecoratorProsciuttoCrudo : ToppingPattern
     {

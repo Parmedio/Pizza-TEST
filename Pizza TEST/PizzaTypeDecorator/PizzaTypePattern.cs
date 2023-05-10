@@ -1,4 +1,6 @@
-﻿namespace Pizza_TEST.PizzaTypeDecorator
+﻿using Pizza_TEST.Model;
+
+namespace Pizza_TEST.PizzaTypeDecorator
 {
     public abstract class PizzaTypePattern : IPizza
     {

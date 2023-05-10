@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizza_TEST
+namespace Pizza_TEST.Model
 {
-    internal interface IOrder
+    public interface IOrder
     {
         int GetOrderID();
-        (string, int)[] GetOrderPizzasAndPrices();
-        double GetOrdersubtotal();
+        IPizza[] GetOrderPizzas();
+        double GetOrderSubtotal();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Pizza_TEST
+﻿namespace Pizza_TEST.Model
 {
     public interface IPizza
     {

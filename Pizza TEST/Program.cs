@@ -1,17 +1,15 @@
 ﻿using Pizza_TEST;
+using Pizza_TEST.Model;
 using System;
 
 var ordersdirectory = "C:\\Users\\student\\source\\repos\\DesignPattern\\Pizza TEST\\orders";
 var receiptdirectory = "C:\\Users\\student\\source\\repos\\DesignPattern\\Pizza TEST\\receipts";
 
-var OrdersArray = CSVreader.ReadAllCsvRows(ordersdirectory);
+IOrder[] OrdersArray = CSVreader.ReadAllCSV(ordersdirectory);
 
 for (int i = 0; i < OrdersArray.Length; i++)
 {
-    int currentReceiptID = OrdersArray[i].Item1;
-    string currentReceiptPizza = OrdersArray[i].Item2;
-    //Console.WriteLine($"{OrdersArray[i]}");
-    Console.WriteLine($"{currentReceiptID} - {currentReceiptPizza}");
+    Console.WriteLine($"receipt number: {OrdersArray[i].GetOrderID()}\nPizza:\n{OrdersArray[i].GetOrderPizzas()[0].GetTopping()}\nReceipt subtotal: {OrdersArray[i].GetOrderSubtotal()}\n\n\n==============================================\n\n\n");
 }
 
 //ReceiptLogger.GenerateCSVReceipt(OrdersArray, receiptdirectory);

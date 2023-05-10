@@ -1,4 +1,6 @@
-﻿namespace Pizza_TEST.DoughDecorator
+﻿using Pizza_TEST.Model;
+
+namespace Pizza_TEST.DoughDecorator
 {
     public class DecoratorNormale : DoughPattern
     {
