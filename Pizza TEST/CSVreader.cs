@@ -21,7 +21,7 @@ namespace Pizza_TEST
 
                 foreach (string row in rows)
                 {
-                    allRows.Add((receiptNumber, row));
+                    allRows.Add((receiptNumber, row.Replace(" ", "")));
                 }
                 receiptNumber++;
             }

@@ -1,13 +1,17 @@
 ﻿using Pizza_TEST;
 using System;
 
-var ordersdirectory = "C:\\Users\\student\\source\\repos\\DesignPattern\\Pizza TEST\\ordini";
+var ordersdirectory = "C:\\Users\\student\\source\\repos\\DesignPattern\\Pizza TEST\\orders";
+var receiptdirectory = "C:\\Users\\student\\source\\repos\\DesignPattern\\Pizza TEST\\receipts";
+
 var OrdersArray = CSVreader.ReadAllCsvRows(ordersdirectory);
 
-//for (int i = 0; i < OrdersArray.Length; i++)
-//{
-//    int currentString = OrdersArray[i].Item1;
-//    Console.WriteLine(currentString);
-//}
+for (int i = 0; i < OrdersArray.Length; i++)
+{
+    int currentReceiptID = OrdersArray[i].Item1;
+    string currentReceiptPizza = OrdersArray[i].Item2;
+    //Console.WriteLine($"{OrdersArray[i]}");
+    Console.WriteLine($"{currentReceiptID} - {currentReceiptPizza}");
+}
 
-ReceiptPrinter.GenerateCSVReceipt(OrdersArray, ordersdirectory);
+//ReceiptLogger.GenerateCSVReceipt(OrdersArray, receiptdirectory);

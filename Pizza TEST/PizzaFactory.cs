@@ -6,33 +6,33 @@ namespace Pizza_TEST
 {
     internal class PizzaFactory
     {
-        public static IPizza assemblePizzaOrder(string orderString)
+        public static IPizza assemblePizzaOrder(string pizzaOrderString)
         {
-            IPizza currentOrder = new Pizza();
+            IPizza currentPizza = new Pizza();
 
-            var splittedOrder = orderString.Split(';');
+            var splittedPizzaOrder = pizzaOrderString.Split(';');
 
-            var pizzaTypeOrder = splittedOrder[0];
-            var pizzaDoughOrder = splittedOrder[1];
-            var pizzaAdditions = splittedOrder[2].Split(',');
+            var pizzaTypeOrder = splittedPizzaOrder[0];
+            var pizzaDoughOrder = splittedPizzaOrder[1];
+            var pizzaAdditions = splittedPizzaOrder[2].Split(',');
 
-            currentOrder = GetOrderPizzaType(pizzaTypeOrder, currentOrder);
-            currentOrder = GetOrderDough(pizzaDoughOrder, currentOrder);
+            currentPizza = GetOrderPizzaType(pizzaTypeOrder, currentPizza);
+            currentPizza = GetOrderDough(pizzaDoughOrder, currentPizza);
 
             for (int i = 0; i < pizzaAdditions.Length; i++)
             {
                 var addition = pizzaAdditions[i];
-                currentOrder = GetOrderAdditions(addition, currentOrder);
+                currentPizza = GetOrderTopping(addition, currentPizza);
             }
 
             if (ContainSpecialItem(pizzaAdditions, "Ananas")) 
             {
-                var specialDiscount = currentOrder.GetPrice();
-                var discountedOrder = new DecoratorSpecialDiscount(currentOrder, specialDiscount);
-                currentOrder = discountedOrder;
+                var specialDiscount = currentPizza.GetPrice();
+                var discountedOrder = new DecoratorSpecialDiscount(currentPizza, specialDiscount);
+                currentPizza = discountedOrder;
             }
 
-            return currentOrder;
+            return currentPizza;
         }
 
         private static IPizza GetOrderPizzaType(string orderPart, IPizza pizza)
@@ -45,6 +45,7 @@ namespace Pizza_TEST
                 default: return null;
             }
         }
+        
         private static IPizza GetOrderDough(string orderPart, IPizza pizza)
         {
             switch (orderPart)
@@ -55,7 +56,7 @@ namespace Pizza_TEST
             }
         }
 
-        private static IPizza GetOrderAdditions(string orderPart, IPizza pizza)
+        private static IPizza GetOrderTopping(string orderPart, IPizza pizza)
         {
             switch (orderPart)
             {

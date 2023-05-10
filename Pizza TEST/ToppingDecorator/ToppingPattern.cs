@@ -1,13 +1,13 @@
 ﻿namespace Pizza_TEST.AdditionDecorator
 {
-    public abstract class AdditionPattern : IPizza
+    public abstract class ToppingPattern : IPizza
     {
         private readonly IPizza _pizza;
 
         protected string _addition = "";
         protected double _price = 0;
 
-        public AdditionPattern(IPizza pizza)
+        public ToppingPattern(IPizza pizza)
         {
             _pizza = pizza;
         }
@@ -16,7 +16,7 @@
 
         public string GetDough() => _pizza.GetDough();
 
-        public string GetAddition() => $"{_pizza.GetAddition()} {_addition}";
+        public string GetTopping() => $"{_pizza.GetTopping()} {_addition}";
 
         public double GetPrice() => _pizza.GetPrice() + _price;
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_TEST.AdditionDecorator
 {
-    public class DecoratorSpecialDiscount : AdditionPattern
+    public class DecoratorSpecialDiscount : ToppingPattern
     {
         public DecoratorSpecialDiscount(IPizza pizza, double discount) : base(pizza)
         {

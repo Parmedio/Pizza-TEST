@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pizza_TEST
 {
-    public static class ReceiptPrinter
+    public static class ReceiptLogger
     {
         public static void GenerateCSVReceipt((int, string)[] data, string directoryPath)
         {

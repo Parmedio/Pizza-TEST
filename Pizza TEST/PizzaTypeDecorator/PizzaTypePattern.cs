@@ -16,7 +16,7 @@
 
         public string GetDough() => _pizza.GetDough();
 
-        public string GetAddition() => _pizza.GetAddition();
+        public string GetTopping() => _pizza.GetTopping();
 
         public double GetPrice() => _pizza.GetPrice() + _price;
     }

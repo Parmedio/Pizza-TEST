@@ -6,7 +6,7 @@
 
         public string GetDough() => string.Empty;
 
-        public string GetAddition() => string.Empty;
+        public string GetTopping() => string.Empty;
       
         public double GetPrice() => 0;
 

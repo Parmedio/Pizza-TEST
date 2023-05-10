@@ -1,6 +1,6 @@
 ﻿namespace Pizza_TEST.AdditionDecorator
 {
-    public class DecoratorFunghi : AdditionPattern
+    public class DecoratorFunghi : ToppingPattern
     {
         public DecoratorFunghi(IPizza pizza) : base(pizza)
         {

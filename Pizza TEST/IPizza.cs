@@ -4,7 +4,7 @@
     {
         string GetPizzaType();
         string GetDough();
-        string GetAddition();
+        string GetTopping();
         double GetPrice();
     }
 }
