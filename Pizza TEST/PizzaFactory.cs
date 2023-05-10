@@ -1,31 +1,82 @@
-﻿namespace Pizza_TEST
+﻿using Pizza_TEST.AdditionDecorator;
+using Pizza_TEST.DoughDecorator;
+using Pizza_TEST.PizzaTypeDecorator;
+
+namespace Pizza_TEST
 {
     internal class PizzaFactory
     {
-        public static IPizza assemblePizzaOrder(string orderstring)
+        public static IPizza assemblePizzaOrder(string orderString)
         {
             IPizza currentOrder = new Pizza();
 
-            var stringNumbers = orderstring.Split(';');
-            if (stringNumbers.Length > 1 )
+            var splittedOrder = orderString.Split(';');
+
+            var pizzaTypeOrder = splittedOrder[0];
+            var pizzaDoughOrder = splittedOrder[1];
+            var pizzaAdditions = splittedOrder[2].Split(',');
+
+            currentOrder = GetOrderPizzaType(pizzaTypeOrder, currentOrder);
+            currentOrder = GetOrderDough(pizzaDoughOrder, currentOrder);
+
+            for (int i = 0; i < pizzaAdditions.Length; i++)
             {
-                for (int i = 1; i < stringNumbers.Length; i++)
-                {
-                    var addition = int.Parse(stringNumbers[i]);
-                    currentOrder = GetMyDecorator(addition, currentOrder);
-                }
+                var addition = pizzaAdditions[i];
+                currentOrder = GetOrderAdditions(addition, currentOrder);
             }
+
+            if (ContainSpecialItem(pizzaAdditions, "Ananas")) 
+            {
+                var specialDiscount = currentOrder.GetPrice();
+                var currentDiscountOrder = new DecoratorSpecialDiscount(currentOrder, specialDiscount);
+                currentOrder = currentDiscountOrder;
+            }
+
             return currentOrder;
         }
 
-        private static ICoffee GetMyDecorator(int number, ICoffee coffee)
+        private static IPizza GetOrderPizzaType(string orderPart, IPizza pizza)
         {
-            switch (number)
+            switch (orderPart)
             {
-                case 2: return new MilkDecorator(coffee);
-                case 3: return new ChoccolateDecorator(coffee);
+                case "Bianca": return new DecoratorBianca(pizza);
+                case "Margherita": return new DecoratorMargherita(pizza);
+                case "Napoletana": return new DecoratorNapoletana(pizza);
                 default: return null;
             }
+        }
+        private static IPizza GetOrderDough(string orderPart, IPizza pizza)
+        {
+            switch (orderPart)
+            {
+                case "Normale": return new DecoratorNormale(pizza);
+                case "Integrale": return new DecoratorIntegrale(pizza);
+                default: return null;
+            }
+        }
+
+        private static IPizza GetOrderAdditions(string orderPart, IPizza pizza)
+        {
+            switch (orderPart)
+            {
+                case "Ananas": return new DecoratorAnanas(pizza);
+                case "Funghi": return new DecoratorFunghi(pizza);
+                case "ProsciuttoCotto": return new DecoratorProsciuttoCotto(pizza);
+                case "ProsciuttoCrudo": return new DecoratorProsciuttoCrudo(pizza);
+                default: return null;
+            }
+        }
+
+        private static bool ContainSpecialItem(string[] array, string special)
+        {
+            foreach (string str in array)
+            {
+                if (str.Equals(special, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

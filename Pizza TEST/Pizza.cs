@@ -9,5 +9,6 @@
         public string GetAddition() => string.Empty;
       
         public double GetPrice() => 0;
+
     }
 }

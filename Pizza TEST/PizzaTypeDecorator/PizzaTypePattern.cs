@@ -1,6 +1,6 @@
 ﻿namespace Pizza_TEST.PizzaTypeDecorator
 {
-    internal class PizzaTypePattern : IPizza
+    public abstract class PizzaTypePattern : IPizza
     {
         private readonly IPizza _pizza;
 

@@ -1,6 +1,6 @@
 ﻿namespace Pizza_TEST.DoughDecorator
 {
-    internal class DoughPattern : IPizza
+    public abstract class DoughPattern : IPizza
     {
         private readonly IPizza _pizza;
 
@@ -21,4 +21,4 @@
         public double GetPrice() => _pizza.GetPrice() + _price;
     }
 }
-}
+
