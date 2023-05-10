@@ -15,22 +15,22 @@ namespace Pizza_TEST
 
             var pizzaTypeOrder = splittedPizzaOrder[0];
             var pizzaDoughOrder = splittedPizzaOrder[1];
-            var pizzaAdditions = splittedPizzaOrder[2].Split(',');
+            var pizzaTopping = splittedPizzaOrder[2].Split(',');
 
             currentPizza = GetOrderPizzaType(pizzaTypeOrder, currentPizza);
             currentPizza = GetOrderDough(pizzaDoughOrder, currentPizza);
 
-            for (int i = 0; i < pizzaAdditions.Length; i++)
+            for (int i = 0; i < pizzaTopping.Length; i++)
             {
-                var addition = pizzaAdditions[i];
-                currentPizza = GetOrderTopping(addition, currentPizza);
+                var topping = pizzaTopping[i];
+                currentPizza = GetOrderTopping(topping, currentPizza);
             }
 
-            if (ContainSpecialItem(pizzaAdditions, "Ananas")) 
+            if (ContainSpecialItem(pizzaTopping, "Ananas")) 
             {
                 var specialDiscount = currentPizza.GetPrice();
-                var discountedOrder = new DecoratorSpecialDiscount(currentPizza, specialDiscount);
-                currentPizza = discountedOrder;
+                var discountedPizza = new DecoratorSpecialDiscount(currentPizza, specialDiscount);
+                currentPizza = discountedPizza;
             }
 
             return currentPizza;
