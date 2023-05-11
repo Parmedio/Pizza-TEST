@@ -4,22 +4,23 @@ namespace Pizza_TEST
 {
     public static class ReceiptLogger
     {
-        public static void GenerateCSVReceipts(IOrder[] orders, string directoryPath)
+        public static void GenerateReceiptFiles(IOrder[] orders, string directoryPath, string receiptFileExtension)
         {
             foreach (var order in orders)
             {
-                string fileName = $"receipt{order.GetOrderID()}.csv";
+                string fileName = $"{order.GetOrderID()}.{receiptFileExtension}";
                 string filePath = Path.Combine(directoryPath, fileName);
 
                 using (var writer = new StreamWriter(filePath))
                 {
-                    writer.WriteLine(order.GetOrderSubtotal());
+                    writer.WriteLine($"Total - {order.GetOrderSubtotal()}\n");
 
-                    writer.WriteLine($"order contain { order.GetOrderPizzas().Length} pizza");
+                    writer.WriteLine($"order contain { order.GetOrderPizzas().Length} pizza:");
                     
                     foreach (var pizza in order.GetOrderPizzas())
                     {
-                        writer.WriteLine($"type: {pizza.GetPizzaType()} - dough: {pizza.GetDough()} - topping: {pizza.GetTopping()} - price: {pizza.GetPrice()}");
+                        writer.WriteLine("\n===============================================\n");
+                        writer.WriteLine($"type: {pizza.GetPizzaType()}\ndough: {pizza.GetDough()}\ntopping: {pizza.GetTopping()}\nprice: {pizza.GetPrice()}");
                     }
                 }
             }

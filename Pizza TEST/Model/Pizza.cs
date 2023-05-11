@@ -2,9 +2,9 @@
 {
     public class Pizza : IPizza
     {
-        public virtual string GetPizzaType() => string.Empty;
-        public virtual string GetDough() => string.Empty;
-        public virtual string GetTopping() => string.Empty;
-        public virtual double GetPrice() => 0;
+        public string GetPizzaType() => string.Empty;
+        public string GetDough() => string.Empty;
+        public string GetTopping() => string.Empty;
+        public double GetPrice() => 0;
     }
 }
