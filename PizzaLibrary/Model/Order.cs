@@ -1,14 +1,14 @@
-﻿namespace Pizza_TEST.Model
+﻿namespace PizzaLibrary.Model
 {
     public class Order : IOrder
     {
         private int _orderID;
 
-        private IPizza[] _pizzas;
+        private List<IPizza> _pizzas;
 
         private double _subtotal;
 
-        public Order(int orderID, IPizza[] pizzas, double subtotal)
+        public Order(int orderID, List<IPizza> pizzas, double subtotal)
         {
             _orderID = orderID;
             _pizzas = pizzas;
@@ -17,7 +17,7 @@
 
         public int GetOrderID() => _orderID;
 
-        public IPizza[] GetOrderPizzas() => _pizzas;
+        public List<IPizza> GetOrderPizzas() => _pizzas;
 
         public double GetOrderSubtotal() => _subtotal;
     }

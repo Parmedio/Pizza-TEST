@@ -1,8 +1,8 @@
-﻿using Pizza_TEST.Model;
+﻿using PizzaLibrary.Model;
 
-namespace Pizza_TEST.PizzaTypeDecorator
+namespace PizzaLibrary.PizzaTypeDecorator
 {
-    internal class DecoratorNapoletana : PizzaTypePattern
+    public class DecoratorNapoletana : PizzaTypePattern
     {
         public DecoratorNapoletana(IPizza pizza) : base(pizza)
         {

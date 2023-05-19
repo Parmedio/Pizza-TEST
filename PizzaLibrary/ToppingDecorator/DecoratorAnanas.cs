@@ -1,6 +1,6 @@
-﻿using Pizza_TEST.Model;
+﻿using PizzaLibrary.Model;
 
-namespace Pizza_TEST.AdditionDecorator
+namespace PizzaLibrary.ToppingDecorator
 {
     public class DecoratorAnanas : ToppingPattern
     {

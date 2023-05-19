@@ -1,6 +1,6 @@
-﻿using Pizza_TEST.Model;
+﻿using PizzaLibrary.Model;
 
-namespace Pizza_TEST.DoughDecorator
+namespace PizzaLibrary.DoughDecorator
 {
     public abstract class DoughPattern : IPizza
     {

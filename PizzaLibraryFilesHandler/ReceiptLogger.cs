@@ -1,21 +1,21 @@
-﻿using Pizza_TEST.Model;
+﻿using PizzaLibrary.Model;
 
-namespace Pizza_TEST
+namespace PizzaLibraryFilesHandler
 {
     public static class ReceiptLogger
     {
-        public static void GenerateCSVReceipts(IOrder[] orders, string directoryPath)
+        public static void GenerateCSVReceipts(IEnumerable<IOrder> orders, string directoryPath)
         {
             foreach (var order in orders)
             {
-                string fileName = $"receipt{order.GetOrderID()}.csv";
-                string filePath = Path.Combine(directoryPath, fileName);
+                var fileName = $"receipt{order.GetOrderID()}.csv";
+                var filePath = Path.Combine(directoryPath, fileName);
 
                 using (var writer = new StreamWriter(filePath))
                 {
                     writer.WriteLine(order.GetOrderSubtotal());
 
-                    writer.WriteLine($"order contain { order.GetOrderPizzas().Length} pizza");
+                    writer.WriteLine($"order contain { order.GetOrderPizzas().Count} pizza");
                     
                     foreach (var pizza in order.GetOrderPizzas())
                     {

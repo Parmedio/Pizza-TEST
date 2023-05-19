@@ -1,9 +1,9 @@
-﻿namespace Pizza_TEST.Model
+﻿namespace PizzaLibrary.Model
 {
     public interface IOrder
     {
         int GetOrderID();
-        IPizza[] GetOrderPizzas();
+        List<IPizza> GetOrderPizzas();
         double GetOrderSubtotal();
     }
 }
